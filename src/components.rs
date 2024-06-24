@@ -111,7 +111,18 @@ impl Component for Footer {
         let about = Route::About;
         format!(
             r#"
-            <footer class="flex flex-wrap items-center justify-center gap-2 p-4">
+            <footer
+                class="
+                    flex
+                    flex-wrap
+                    items-center
+                    justify-center
+                    gap-2
+                    p-4
+                    bg-teal-50
+                    dark:bg-indigo-1000
+                "
+            >
                 <a class="link" href="{privacy}">Privacy Policy</a>
                 <a class="link" href="{tos}">Terms of Service</a>
                 <a class="link" href="{home}">Dashboard</a>
