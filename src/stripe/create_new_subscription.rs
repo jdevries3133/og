@@ -19,6 +19,7 @@ pub async fn create_customer(
     name: &str,
     email: &str,
 ) -> Aresult<Option<String>> {
+    println!("stripe is enabled");
     let url = "https://api.stripe.com/v1/customers";
     let secret_key = get_b64_encoded_token_from_env()?;
     let params = [("name", name), ("email", email)];
@@ -37,6 +38,7 @@ pub async fn create_customer(
     _name: &str,
     _email: &str,
 ) -> Aresult<Option<String>> {
+    println!("stripe is disabled");
     Ok(None)
 }
 

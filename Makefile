@@ -69,10 +69,9 @@ ifndef CI
 endif
 
 dev: setup
-	npx concurrently --names 'tailwind,cargo,stripe' \
+	npx concurrently --names 'tailwind,cargo' \
 		'pnpm run dev' \
-		"cargo watch -x 'run --features \"live_reload stripe use_stripe_test_instance localhost_base_url\"'" \
-		'make proxy-stripe-webhook' \
+		"cargo watch -x 'run --features \"live_reload localhost_base_url\"'"
 
 bootstrap: setup _stop-db
 	SQLX_OFFLINE=true cargo build
