@@ -61,7 +61,7 @@ module "basic-deployment" {
   version = "3.0.2"
 
   app_name  = "og"
-  container = "jdevries3133/og:${data.external.git_describe.result.output}"
+  container = "jdevries3133/og:${data.external.git_sha.result.output}"
   domain    = "og.jackdevries.com"
 
   extra_env = {
