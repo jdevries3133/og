@@ -1,6 +1,6 @@
 //! Database operations; squirrel code lives here.
 
-use super::{models, stripe};
+use super::{env, models, stripe};
 use anyhow::Result;
 use chrono::{DateTime, Utc};
 use sqlx::{
@@ -9,14 +9,14 @@ use sqlx::{
 };
 
 pub async fn create_pg_pool() -> Result<sqlx::Pool<sqlx::Postgres>> {
-    let db_url = &std::env::var("DATABASE_URL")
-        .expect("database url to be defined in the environment")[..];
+    let db_url = env::get_var("DATABASE_URL")
+        .expect("database url to be defined in the environment");
 
     Ok(PgPoolOptions::new()
         // Postgres default max connections is 100, and we'll take 'em
         // https://www.postgresql.org/docs/current/runtime-config-connection.html
         .max_connections(80)
-        .connect(db_url)
+        .connect(&db_url)
         .await?)
 }
 

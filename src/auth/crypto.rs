@@ -2,14 +2,14 @@
 //! cryptographic code for [crate::session], which I'm now realizing doesn't
 //! really make sense, does it?
 
+use crate::env;
 use hmac::{Hmac, Mac};
 use sha2::Sha256;
-use std::env;
 
 type HmacSha256 = Hmac<Sha256>;
 
 fn get_session_secret() -> Vec<u8> {
-    env::var("SESSION_SECRET")
+    env::get_var("SESSION_SECRET")
         .expect("session secret to be defined in the environment")
         .into()
 }

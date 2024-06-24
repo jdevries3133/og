@@ -9,6 +9,7 @@ mod components;
 mod config;
 mod controllers;
 mod db_ops;
+mod env;
 mod errors;
 mod html_sanitize;
 mod htmx;

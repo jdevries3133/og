@@ -1,9 +1,9 @@
 use super::{db_ops::persist_update_op, models::StripeUpdate};
-use crate::{config, prelude::*};
+use crate::{config, env, prelude::*};
 use hmac::{Hmac, Mac};
 use serde_json::Value;
 use sha2::Sha256;
-use std::{collections::HashMap, env};
+use std::collections::HashMap;
 
 #[derive(Deserialize)]
 struct StripeSubscriptionUpdate {
@@ -160,7 +160,7 @@ fn authenticate_stripe(
     let external_digest = external_digest.as_bytes();
     let payload_str = format!("{}.{}", timestamp, message_body);
     let payload = payload_str.as_bytes();
-    let signing_secret = env::var("STRIPE_WEBHOOK_SIGNING_SECRET")?;
+    let signing_secret = env::get_var("STRIPE_WEBHOOK_SIGNING_SECRET")?;
     let mut mac = Hmac::<Sha256>::new_from_slice(signing_secret.as_bytes())?;
     mac.update(payload);
     let sig = hex::decode(external_digest)?;
