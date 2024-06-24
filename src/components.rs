@@ -254,6 +254,7 @@ impl Component for UserHome<'_> {
             r#"
             <div class="flex flex-col prose">
                 Hi, {username}!
+                Nothing is here yet; check back soon!
                 <a class="link" href="{log_out}">Log Out</a>
                 {register_ui}
             </div>
