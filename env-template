@@ -14,7 +14,6 @@ SESSION_SECRET=superdupersecret
 POSTGRES_USER=you
 POSTGRES_PASSWORD=somepassword
 POSTGRES_DB=og
-OPENAI_API_KEY=<your api key goes here>
 STRIPE_API_KEY=<your api key goes here>
 
 ### Stripe ###
