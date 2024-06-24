@@ -8,7 +8,7 @@ pub const SESSION_EXPIRY_TIME_DAYS: i64 = 30;
 pub const RESET_TOKEN_TIMEOUT_MINUTES: i64 = 15;
 
 #[cfg(not(feature = "localhost_base_url"))]
-pub const BASE_URL: &str = "https://beancount.bot";
+pub const BASE_URL: &str = "https://og.jackdevries.com";
 
 #[cfg(feature = "localhost_base_url")]
 pub const BASE_URL: &str = "http://localhost:8000";
