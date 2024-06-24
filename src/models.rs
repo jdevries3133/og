@@ -16,7 +16,7 @@ pub struct User {
     pub username: String,
     pub email: String,
     pub created_at: DateTime<Utc>,
-    pub stripe_customer_id: String,
+    pub stripe_customer_id: Option<String>,
     pub stripe_subscription_type: stripe::SubscriptionTypes,
 }
 

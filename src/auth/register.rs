@@ -273,7 +273,7 @@ pub async fn create_user(
     username: String,
     email: String,
     pw: &pw::HashedPw,
-    stripe_customer_id: String,
+    stripe_customer_id: Option<String>,
     subscription_type: stripe::SubscriptionTypes,
 ) -> Aresult<User> {
     let query_return = query_as!(

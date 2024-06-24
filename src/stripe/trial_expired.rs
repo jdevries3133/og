@@ -89,7 +89,10 @@ pub async fn trial_expired(
     } else {
         let user = session.get_user(&db).await?;
         let stripe_url =
-            get_basic_plan_checkout_session(&user.stripe_customer_id).await?;
+            get_basic_plan_checkout_session(&user.stripe_customer_id.expect(
+                "users must have a stripe ID if trial expiry is happening",
+            ))
+            .await?;
         Ok(Page {
             title: "Trial Expired",
             children: &PageContainer {

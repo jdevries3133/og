@@ -82,8 +82,12 @@ pub async fn subscription_ended(
         println!("Warning: anonymous (id = {uid}) user is visiting subscription_ended; this probably won't work")
     }
     let user = session.get_user(&db).await?;
-    let checkout_url =
-        get_basic_plan_checkout_session(&user.stripe_customer_id).await?;
+    let checkout_url = get_basic_plan_checkout_session(
+        &user
+            .stripe_customer_id
+            .expect("users must have a stripe ID if subscriptions are ending"),
+    )
+    .await?;
     Ok(components::Page {
         title: "Subscription Expired",
         children: &components::PageContainer {

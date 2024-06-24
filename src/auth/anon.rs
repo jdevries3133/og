@@ -20,7 +20,7 @@ pub async fn init_anon(
                 username,
                 email,
                 &password,
-                "".to_string(),
+                None,
                 SubscriptionTypes::FreeTrial(config::FREE_TRIAL_DURATION),
             )
             .await?;

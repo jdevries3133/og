@@ -47,7 +47,7 @@ struct Qres {
     id: i32,
     username: String,
     email: String,
-    stripe_customer_id: String,
+    stripe_customer_id: Option<String>,
     subscription_type_id: i32,
     created_at: DateTime<Utc>,
 }

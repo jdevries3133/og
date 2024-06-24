@@ -14,7 +14,11 @@ struct BillingPortalSession {
 }
 
 /// Returns the stripe customer ID
-pub async fn create_customer(name: &str, email: &str) -> Aresult<String> {
+#[cfg(feature = "stripe")]
+pub async fn create_customer(
+    name: &str,
+    email: &str,
+) -> Aresult<Option<String>> {
     let url = "https://api.stripe.com/v1/customers";
     let secret_key = get_b64_encoded_token_from_env()?;
     let params = [("name", name), ("email", email)];
@@ -25,7 +29,15 @@ pub async fn create_customer(name: &str, email: &str) -> Aresult<String> {
         .header("Authorization", format!("Basic {}:", secret_key));
     let builder = builder.form(&params);
     let response: BillingPortalSession = builder.send().await?.json().await?;
-    Ok(response.id)
+    Ok(Some(response.id))
+}
+
+#[cfg(not(feature = "stripe"))]
+pub async fn create_customer(
+    _name: &str,
+    _email: &str,
+) -> Aresult<Option<String>> {
+    Ok(None)
 }
 
 #[derive(Debug, Serialize)]

@@ -34,7 +34,7 @@ pub async fn redirect_to_billing_portal(
     let return_url =
         format!("{}{}", config::BASE_URL, Route::UserHome.as_string());
     let request_payload = BillingPortalRequest {
-        customer: &user.stripe_customer_id,
+        customer: &user.stripe_customer_id.ok_or(Error::msg("users must have a stripe ID to be redirected to the billing portal"))?,
         return_url: &return_url,
     };
     let client = Client::new();
