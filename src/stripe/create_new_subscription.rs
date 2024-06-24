@@ -1,10 +1,12 @@
 //! Interface to the stripe API
 
+#[cfg(feature = "stripe")]
 use super::env::get_b64_encoded_token_from_env;
 #[cfg(feature = "stripe")]
 use crate::config;
 use crate::prelude::*;
 use anyhow::Result as Aresult;
+#[cfg(feature = "stripe")]
 use reqwest::Client;
 use serde::Serialize;
 
@@ -42,6 +44,7 @@ pub async fn create_customer(
     Ok(None)
 }
 
+#[cfg(feature = "stripe")]
 #[derive(Debug, Serialize)]
 struct BillingPortalRequest {
     customer: String,
