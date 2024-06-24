@@ -148,7 +148,9 @@ debug-container:
 push-container: build-container
 	docker push $(CONTAINER_EXACT_REF)
 
-# I use this with vim `:read !make migration-cat` to view all migration files
-# together in a single file.
-migration-cat:
-	find migrations | grep ".sql$$" | xargs cat
+prod-shell-db:
+	kubectl exec \
+		-it \
+		-n og \
+		pod/db-postgresql-0 \
+		-- /bin/sh -c 'psql postgresql://og:$$POSTGRES_PASSWORD@127.0.0.1:5432/og'
