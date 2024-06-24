@@ -33,11 +33,6 @@ variable "openai_api_key" {
   sensitive = true
 }
 
-variable "smtp_email_username" {
-  type      = string
-  sensitive = true
-}
-
 variable "smtp_email_password" {
   type      = string
   sensitive = true
