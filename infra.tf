@@ -65,8 +65,8 @@ module "basic-deployment" {
   domain    = "og.jackdevries.com"
 
   extra_env = {
-    SESSION_SECRET                = random_password.secret_key.result
-    SMTP_EMAIL_USERNAME           = "jdevries3133@gmail.com"
-    SMTP_EMAIL_PASSWORD           = var.smtp_email_password
+    SESSION_SECRET      = random_password.secret_key.result
+    SMTP_EMAIL_USERNAME = "jdevries3133@gmail.com"
+    SMTP_EMAIL_PASSWORD = var.smtp_email_password
   }
 }
